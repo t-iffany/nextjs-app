@@ -1,6 +1,7 @@
 // dynamic component - brackets [] make the route dynamic
 
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 export default function Car( { car }) {
   
@@ -9,7 +10,12 @@ export default function Car( { car }) {
 
   return (
     <>
+      {/* add meta tags to head of document using Head */}
+      <Head>
+        <title>{car.color} {car.id}</title>
+      </Head>
       <h1>Hello {id}</h1>
+      {/* // destructure car prop and use in jsx */}
       <img src={car.image} width="300px" />
     </>
   )
