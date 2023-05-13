@@ -21,6 +21,20 @@ export default function Car( { car }) {
   )
 }
 
+// does the same thing, but fetches at every request instead of at every build
+export async function getServerSideProps({ params }) {
+  // fetch json for individual car so it can be used in html
+  const req = await fetch(`http://localhost:3000/${params.id}.json`);
+  const data = await req.json();
+
+  return {
+    props: { car: data},
+  }
+}
+
+// can either use getServerSideProps, or the two functions below
+
+/*
 // getStaticProps() - tells Next to prerender page
 
 export async function getStaticProps({ params }) {
@@ -49,3 +63,4 @@ export async function getStaticPaths() {
     fallback: false
   }
 }
+*/
